@@ -1,0 +1,11 @@
+
+block body
+  .main-container
+    .main
+      - var ii = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+      div.row.list
+        each i in ii
+          div.col= i
+
+      div.row
+        h1.heading cool

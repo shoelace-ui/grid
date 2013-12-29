@@ -1,0 +1,15 @@
+{
+  "name": "grid",
+  "repo": "shoelace-ui/grid",
+  "description": "CSS grid placeholders",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "shoelace-ui/clearfix": "*"
+  },
+  "development": {},
+  "styles": [
+    "stylesheets/index.styl"
+  ],
+  "license": "MIT"
+}

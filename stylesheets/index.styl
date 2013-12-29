@@ -1,0 +1,70 @@
+
+@import 'shoelace-ui-clearfix/stylesheets'
+
+breakpoints = {
+  xs: 480px
+  sm: 768px
+  md: 972px
+  lg: 1200px
+}
+
+$pad ?= 15px;
+$columns ?= 12
+
+$pad-sides
+  padding-right $pad
+  padding-left $pad
+$border-box
+  box-sizing border-box
+  add-property('*behavior', unquote('url(/build/hub-ui/public/boxsizing.htc)'))
+$row
+  margin-left -($pad)
+  margin-right -($pad)
+  @extend $clearfix
+
+$container-base
+  margin-left auto
+  margin-right auto
+  @extend $pad-sides
+  @extend $border-box
+  @extend $clearfix
+for key, val in breakpoints
+  $container-{key}
+    if val > breakpoints['sm']
+      query = 'screen and (min-width:' + val + ')'
+      @media query
+        max-width (val - ($pad * 2))
+    // ie 7-8 hack
+    if key == 'md'
+      *max-width (val - $pad * 2)
+    @extend $container-base
+$container
+  width (val - ($pad * 2))
+  @extend $container-base
+  @extend $container-xs
+  @extend $container-sm
+  @extend $container-md
+  @extend $container-lg
+
+$col-base
+  position relative
+  min-height 1px
+  float left
+  @extend $pad-sides
+  @extend $border-box
+for key, val in breakpoints
+  for num in (1..$columns)
+    $col-{key}-{num}
+      $width = ((num / $columns) * 100) * 1%
+      if key == 'xs'
+        $query = 'screen and (max-width:' + (breakpoints['sm'] - 1) + ')'
+      else
+        $query = 'screen and (min-width:' + val + ')'
+      @extend $col-base
+      @media $query
+        width $width
+      // ie 7-9 hack
+      if key == 'md'
+        if round($width) != $width
+          $width = $width - 0.031
+        add-property('*width', $width)
