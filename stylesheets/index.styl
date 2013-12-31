@@ -1,5 +1,5 @@
 
-@import 'shoelace-ui-clearfix/stylesheets'
+@import '../components/shoelace-ui-clearfix/stylesheets'
 
 breakpoints = {
   xs: 480px
@@ -8,7 +8,7 @@ breakpoints = {
   lg: 1200px
 }
 
-$pad ?= 15px;
+$pad ?= 15px
 $columns ?= 12
 
 $pad-sides
@@ -21,6 +21,14 @@ $row
   margin-left -($pad)
   margin-right -($pad)
   @extend $clearfix
+
+$xs-min = '(min-width:' +  breakpoints['xs']        + ')'
+$xs-max = '(max-width:' + (breakpoints['sm'] - 1px) + ')'
+$sm-min = '(min-width:' +  breakpoints['sm']        + ')'
+$sm-max = '(max-width:' + (breakpoints['md'] - 1px) + ')'
+$md-min = '(min-width:' +  breakpoints['md']        + ')'
+$md-max = '(max-width:' + (breakpoints['lg'] - 1px) + ')'
+$lg-min = '(min-width:' +  breakpoints['lg']        + ')'
 
 $container-base
   margin-left auto
@@ -36,10 +44,10 @@ for key, val in breakpoints
         max-width (val - ($pad * 2))
     // ie 7-8 hack
     if key == 'md'
-      *max-width (val - $pad * 2)
+      *width (val - $pad * 2)
     @extend $container-base
 $container
-  width (val - ($pad * 2))
+  // *width (val - ($pad * 2))
   @extend $container-base
   @extend $container-xs
   @extend $container-sm

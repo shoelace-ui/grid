@@ -1,3 +1,4 @@
-'stylesheets': '@shoelace build --preview'
 'preview': '@shoelace build --preview'
-'build': ''
+'stylesheets': '@shoelace build --preview'
+'build/*.css': ''
+'build/*.js': ''
